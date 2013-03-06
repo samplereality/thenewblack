@@ -47,20 +47,21 @@ $('.reload').click(getWords);
 function getWords() {
   $.when(
     $.ajax({
-      url: 'http://api.wordnik.com/v4/words.json/randomWords?minCorpusCount=10000&minDictionaryCount=5&excludePartOfSpeech=proper-noun,proper-noun-plural,proper-noun-posessive,suffix,family-name,idiom,affix&hasDictionaryDef=true&includePartOfSpeech=noun,adjective,verb&limit=3&maxLength=22&api_key='+key.API_KEY,
+      url: 'http://api.wordnik.com/v4/words.json/randomWords?minCorpusCount=1000&minDictionaryCount=4&excludePartOfSpeech=noun-plural,proper-noun-plural,proper-noun-posessive,suffix,family-name,idiom,affix&hasDictionaryDef=true&includePartOfSpeech=noun&limit=3&maxLength=22&api_key='+key.API_KEY,
       async: false,
       dataType:"json"
     }),
     $.ajax({
-      url: 'http://api.wordnik.com//v4/words.json/randomWord?excludePartOfSpeech=adjective&hasDictionaryDef=true&includePartOfSpeech=verb-transitive&minCorpusCount=1000&api_key='+key.API_KEY,
+      url: 'http://api.wordnik.com//v4/words.json/randomWord?minCorpusCount=1000&excludePartOfSpeech=noun-plural,proper-noun-plural&hasDictionaryDef=true&minDictionaryCount=3&includePartOfSpeech=noun&api_key='+key.API_KEY,
       async: false,
       dataType:"json"
     })
   ).done(function(noun_data, verb_data) {
-    $('#allthethings').html('');
-    nouns = noun_data[0][0].word.pluralize();
-    var verb = verb_data[0].word;
-    $("#allthethings").append(verb + " ALL the " + nouns + "<br>");
+    $('#thenewblack').html('');
+//  nouns = noun_data[0][0].word.pluralize();
+    nouns = noun_data[0][0].word;
+	var verb = verb_data[0].word.capitalize();
+    $("#thenewblack").append(verb + " is the new " + nouns + ".<br>");
     $('#share').attr('href',location.href.split('?')[0]+'?word='+encodeStr(verb)+'$'+encodeStr(nouns));
   });
   return false;
@@ -73,8 +74,8 @@ if (gup('word') === "") {
 else {
   verb = decodeStr(unescape(gup('word')).split('$')[0]);
   nouns = decodeStr(unescape(gup('word')).split('$')[1]);
-  $('#allthethings').text('');
-  $("#allthethings").append(verb + " ALL the " + nouns + "<br>");
+  $('#thenewblack').text('');
+  $("#thenewblack").append(verb + " is the new " + nouns + ".<br>");
   $('.reload').attr('href',location.origin+location.pathname);
   $('#share').attr('href',url);
 }
