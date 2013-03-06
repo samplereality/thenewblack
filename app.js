@@ -60,8 +60,8 @@ function getWords() {
     $('#thenewblack').html('');
 //  nouns = noun_data[0][0].word.pluralize();
     nouns = noun_data[0][0].word;
-	var verb = verb_data[0].word.capitalize();
-    $("#thenewblack").append(verb + " is the new " + nouns + ".<br>");
+	var verb = verb_data[0].word;
+    $("#thenewblack").append(verb + " is the new " + nouns + "<br>");
     $('#share').attr('href',location.href.split('?')[0]+'?word='+encodeStr(verb)+'$'+encodeStr(nouns));
   });
   return false;
@@ -75,7 +75,7 @@ else {
   verb = decodeStr(unescape(gup('word')).split('$')[0]);
   nouns = decodeStr(unescape(gup('word')).split('$')[1]);
   $('#thenewblack').text('');
-  $("#thenewblack").append(verb + " is the new " + nouns + ".<br>");
+  $("#thenewblack").append(verb + " is the new " + nouns + "<br>");
   $('.reload').attr('href',location.origin+location.pathname);
   $('#share').attr('href',url);
 }
