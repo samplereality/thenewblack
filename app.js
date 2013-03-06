@@ -47,7 +47,7 @@ $('.reload').click(getWords);
 function getWords() {
   $.when(
     $.ajax({
-      url: 'http://api.wordnik.com/v4/words.json/randomWords?minCorpusCount=1000&minDictionaryCount=4&excludePartOfSpeech=noun-plural,proper-noun-plural,proper-noun-posessive,suffix,family-name,idiom,affix&hasDictionaryDef=true&includePartOfSpeech=noun&limit=3&maxLength=22&api_key='+key.API_KEY,
+      url: 'http://api.wordnik.com/v4/words.json/randomWords?minCorpusCount=10000&minDictionaryCount=4&excludePartOfSpeech=noun-plural,proper-noun-plural,proper-noun-posessive,suffix,family-name,affix&hasDictionaryDef=true&includePartOfSpeech=noun&limit=3&maxLength=22&api_key='+key.API_KEY,
       async: false,
       dataType:"json"
     }),
